@@ -93,7 +93,8 @@
                 }
             })
             let wrong = (w1.length - c);
-            return (" Correct words = " + c + " Errors =" + wrong + ".");
+            let acc=100-((wrong/w1.length)*100)
+            return (" Correct words = " + c + " Errors =" + wrong + " Accuracy = "+acc+"%");
         }
 
 
