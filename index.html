@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>Test Your Typing Speed</h1>
+        </div>
+        <div class="midsec">
+            <p>This is a typing test.Your goal is to duplicate the provided text,Exactly in the field below. The timer starts when you start typing, and only stops when you match this text exactly. GOOD LUCK!</p>
+        </div>
+        <div class="center">
+            <p id="msg"></p>
+
+
+            <textarea type="text" id="inpp" ondrop="return false" onpaste="return false" oncopy="return false" ondrag="return false"></textarea>
+
+
+        </div>
+        <!-- <input type="text" id="inpp" onkeypress="fun()"> -->
+
+        <div class="buttons">
+            <p id="timer">Hit Play to start timer</p>
+            <button id="btn" class="mainbtn">Play</button>
+
+        </div>
+    </div>
+    <script>
+        var st = ["Both versions convey a topic; it’s pretty easy to predict that the paragraph will be about epidemiological evidence, but only the second version establishes an argumentative point and puts it in context. The paragraph doesn’t just describe the epidemiological evidence; it shows how epidemiology is telling the same story as etiology. Similarly, while Version A doesn’t relate to anything in particular, Version B immediately suggests that the prior paragraph addresses the biological pathway (i.e. etiology) of a disease and that the new paragr.", "A last thing to note about key sentences is that academic readers expect them to be at the beginning of the paragraph. (The first sentence this paragraph is a good example of this in action!) This placement helps readers comprehend your argument. To see how, try this: find an academic piece (such as a textbook or scholarly article) that strikes you as well written and go through part of it reading just the first sentence of each paragraph. You should be able to easily follow the sequence of logic.", "Knowing this convention of academic writing can help you both read and write more effectively. When you’re reading a complicated academic piece for the first time, you might want to go through reading only the first sentence or two of each paragraph to get the overall outline of the argument. Then you can go back and read all of it with a clearer picture of how each of the details fit in. "];
+        const msg = document.getElementById("msg");
+        const inp = document.getElementById("inpp");
+        const btn = document.getElementById("btn");
+        var time = document.getElementById("timer");
+        var begin, w1, w2, end, z, a = 0;
+
+
+        function fun() {
+            a = a + 1;
+            time.innerHTML = a;
+        }
+
+        const start = () => {
+            z = setInterval(fun, 1000);
+            let rn = Math.floor(Math.random() * 3);
+            msg.innerText = st[rn]
+            let strt = new Date();
+            begin = strt.getTime();
+
+            btn.innerText = "Stop"
+                // console.log(begin / 1000)
+        }
+        const over = () => {
+            clearInterval(z)
+            time.innerHTML = "Hit play to start timer"
+            let ending = new Date();
+            end = ending.getTime();
+            a = 0;
+            let tt = (end - begin) / 1000;
+            // console.log(tt)
+            let ch = inp.value;
+            inp.value = "";
+            let count = counter(ch)
+            let spd = Math.floor((count / tt) * 60);
+            console.log(spd)
+            let result = "Your speed is " + spd + " wpm "
+            result += check(msg.innerText, ch);
+
+
+
+            if (w2 == "") {
+                alert("You are a living legend. ")
+            } else {
+                alert(result);
+            }
+            msg.innerText = ""
+
+
+        }
+        const check = (s1, s2) => {
+            w1 = s1.split(" ");
+            w2 = s2.split(" ");
+            let c = 0;
+            w1.forEach(function(item, index) {
+                if (item == w2[index]) {
+                    c++;
+                }
+            })
+            let wrong = (w1.length - c);
+            return (c + " correct out of " + w1.length + " words and errors are " + wrong + ".");
+        }
+
+
+        const counter = (x) => {
+            let len = x.split(" ").length;
+            console.log(len);
+            return len
+        }
+        btn.addEventListener('click', function() {
+
+            if (this.innerText == "Play") {
+                inpp.disabled = false;
+                start();
+            } else if (btn.innerText == "Stop") {
+                inpp.disabled = true;
+                btn.innerText = "Play"
+
+                over();
+
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>
