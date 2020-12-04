@@ -27,7 +27,7 @@
         <!-- <input type="text" id="inpp" onkeypress="fun()"> -->
 
         <div class="buttons">
-            <p id="timer">Hit Play to start timer</p>
+            <p id="timer">Hit Play to start</p>
             <button id="btn" class="mainbtn">Play</button>
 
         </div>
@@ -58,7 +58,7 @@
         }
         const over = () => {
             clearInterval(z)
-            time.innerHTML = "Hit play to start timer"
+            time.innerHTML = "Hit play to start"
             let ending = new Date();
             end = ending.getTime();
             a = 0;
@@ -69,13 +69,13 @@
             let count = counter(ch)
             let spd = Math.floor((count / tt) * 60);
             console.log(spd)
-            let result = "Your speed is " + spd + " wpm "
+            let result = "Your speed is " + spd + " WPM "
             result += check(msg.innerText, ch);
 
 
 
             if (w2 == "") {
-                alert("You are a living legend. ")
+                alert("You are a living legend who expects typing speed without typing .")
             } else {
                 alert(result);
             }
@@ -93,7 +93,7 @@
                 }
             })
             let wrong = (w1.length - c);
-            return (c + " correct out of " + w1.length + " words and errors are " + wrong + ".");
+            return (" Correct words = " + c + " Errors =" + wrong + ".");
         }
 
 
